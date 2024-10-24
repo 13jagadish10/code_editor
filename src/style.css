@@ -156,28 +156,29 @@ textarea:focus {
 }
   @media (max-width: 450px){
     .container{ 
-      flex-wrap: wrap;
+      flex-wrap: wrap !important;
+      max-width: 100vw !important;
     }
     .left, .right{
-      min-width: 300px;
-      width: 95%;
-      margin: auto;
+      min-width: 300px !important;
+      width: 95% !important;
+      margin: auto !important;
     }
     .left div{
-      height: 40vh;
+      height: 40vh !important;
     }
     .left div textarea{
-      height: 90%;
+      height: 90% !important;
     }
     .allItems{
-      visibility:visible;
-      height: 80px;
+      visibility:visible !important;
+      height: 80px !important;
     }
     .right{
-      height: 40vh;
+      height: 40vh !important;
     }
     .right textarea{
-      height: 90%;
+      height: 90% !important;
     }
   }
   footer{
@@ -196,4 +197,8 @@ textarea:focus {
   }
   code{
     color: white; 
+  }
+
+  textarea{
+    color: black !important;
   }

@@ -16,9 +16,9 @@ function run() {
 }
 
 // If user type anything in the respective code element then it automatically runs and it will show in the output
-htmlCodeEl.addEventListener("keyup",()=>{run()})
-cssCodeEl.addEventListener("keyup",()=>{run()})
-jsCodeEl.addEventListener("keyup",()=>{run()})
+htmlCodeEl.addEventListener("keyup", () => { run() })
+cssCodeEl.addEventListener("keyup", () => { run() })
+jsCodeEl.addEventListener("keyup", () => { run() })
 
 // Accessing data stored in Local Storage.
 htmlCodeEl.value = localStorage.htmlCodeEl || "";
@@ -29,28 +29,32 @@ jsCodeEl.value = localStorage.jsCodeEl || "";
 
 const itemEls = document.querySelectorAll(".item");
 const pages = document.querySelectorAll(".left div")
-itemEls.forEach((event,index) => {
-    event.addEventListener("click",()=>{
-        
+itemEls.forEach((event, index) => {
+    event.addEventListener("click", () => {
+
         // remove previous active class and adding active class to user clicked icon.
         document.querySelector(".active").classList.remove("active")
         event.classList.add("active");
-      
+
         // moving dot to the place of active class icon
-		const dotEl = document.querySelector(".dot");
-        dotEl.style.left = `${index*100 + 80}px`
+        const dotEl = document.querySelector(".dot");
+        dotEl.style.left = `${index * 100 + 80}px`
         if (index === 0) {
             pages[0].classList.remove('hide')
             pages[1].classList.add('hide')
             pages[2].classList.add('hide')
-        } else if(index === 1){
+        } else if (index === 1) {
             pages[0].classList.add('hide')
             pages[1].classList.remove('hide')
             pages[2].classList.add('hide')
-        } else if(index === 2){
+        } else if (index === 2) {
             pages[0].classList.add('hide')
             pages[1].classList.add('hide')
             pages[2].classList.remove('hide')
         }
     })
 });
+
+
+
+

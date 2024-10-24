@@ -6,17 +6,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Editor</title>
+
     <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
+    <!-- link the css files -->
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="stylesheet" href="/src/output.css">
 
     <!-- cdn link for font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
 
 <body>
+    <!-- Header section - NavBar -->
+    <header class="text-gray-600 body-font bg-[#909090]">
+        <div class="container mx-auto flex flex-wrap p-5 pb-2 flex-col md:flex-row items-center">
+            <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                <img src="favicon.png" class="w-10 h-10 rounded-full border-4 border-[#cf9f64d5]" alt="" srcset="">
+                <span class="ml-3 text-xl">Code Editor</span>
+            </a>
+            <nav class="md:ml-auto flex flex-wrap gap-2 items-center text-base justify-center">
+                <!-- <a id="openProjectsModalBtn" class="mr-5 hover:text-gray-900 cursor-pointer">Projects</a> -->
+                <button id="openProjectsModalBtn"
+                    class="inline-flex items-center text-white hover:bg-[#090909] border-0 py-1 px-3 focus:outline-none bg-gray-700 rounded text-base mt-4 md:mt-0 ">Projects
+                </button>
+                <button id="openSPModalBtn"
+                    class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0 ">Save
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Navigation tab - small screen -->
     <ul class="allItems">
         <li class="item active">
             <i class="fa-brands fa-html5"></i>
@@ -28,13 +50,14 @@
         </li>
         <li class="item">
             <i class="fa-brands fa-square-js fa-css3-alt"></i>
-                <div class="title">JS</div>
+            <div class="title">JS</div>
         </li>
         <div class="dot"></div>
 
     </ul>
 
-    <div class="container">
+    <!-- Main Section - Code and Output -->
+    <div class="flex flex-wrap">
         <div class="left">
             <div>
                 <label for="html"><i class="fa-brands fa-html5"></i>HTML</label>
@@ -55,11 +78,109 @@
         </div>
     </div>
 
+
+
+    <!-- Modal to save the project -->
+    <div id="SaveProjectModal"
+        class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg max-w-lg w-full p-6">
+            <div class="flex justify-between items-center">
+                <h3 class="text-lg font-bold text-gray-800">Save the project</h3>
+                <button class="closeModalBtn text-gray-600 hover:text-gray-900">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+            <div>
+                <label for="projectname" class="block mb-2 text-sm font-medium text-gray-900 my-4 bg-[#808080]">Name of
+                    the project</label>
+                <input type="text" name="projectname"
+                    class="projectName bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                    placeholder="Enter project name" required />
+            </div>
+            <div class="flex justify-end mt-6 gap-2">
+                <button
+                    class="closeModalBtn2 py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none">
+                    Close
+                </button>
+                <button
+                    class="saveProjectBtn py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-[#808080]  hover:bg-[#464646] focus:outline-none">
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal to render saved projects -->
+    <div id="ProjectsModal"
+        class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg max-w-xl w-full p-6">
+            <div class="flex justify-between items-center">
+                <h3 class="text-lg font-bold text-gray-800">Your Projects</h3>
+                <button class="closeModalBtn text-gray-600 hover:text-gray-900">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+            <div class="max-h-[75vh] overflow-y-auto">
+                <div class="projectsContainer">
+                    <div class="bg-black/10  rounded-md">
+                        <p class="p-2 py-1 rounded-t-md block mb-2 text-sm font-medium text-gray-900 my-4 bg-[#808080]">
+                            Name of the project
+                        </p>
+                        <div class="flex flex-wrap justify-between px-2 pb-2">
+                            <p class="inline text-black">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JS</span>
+                                <span class="ml-3 text-sm text-gray-700">10/10/2024</span>
+                            </p>
+
+                            <div class="flex justify-end gap-2">
+                                <button
+                                    class=" py-1 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border text-white bg-red-500 shadow-sm hover:bg-red-600 focus:outline-none">
+                                    Delete
+                                </button>
+                                <button
+                                    class="saveProjectBtn py-1 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-500  hover:bg-green-600 focus:outline-none">
+                                    Open
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Footer of modal -->
+            <div class="flex justify-end mt-6 gap-2">
+                <button
+                    class="closeModalBtn2 py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-[#808080]  hover:bg-[#464646] focus:outline-none">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer of the page -->
     <footer>
         <div>A project submitted by <code>Bhavesh</code></div>
-        <div><p>Designed by <code>IT Circle</code></p><p>Copyright &copy; 2024 all rights reserved</p></div>
+        <div>
+            <p>Designed by <code>IT Circle</code></p>
+            <p>Copyright &copy; 2024 all rights reserved</p>
+        </div>
     </footer>
-    <script src="index.js"></script>
+
+    <!-- links for js files -->
+    <script src="/src/index.js"></script>
+    <script src="/src/modals.js"></script>
 </body>
 
 </html>
